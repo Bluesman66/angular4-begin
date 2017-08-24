@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent
+    CoursesComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
