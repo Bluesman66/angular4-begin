@@ -35,10 +35,7 @@ export class PostsComponent implements OnInit {
         if (error instanceof BadInputError){
           //this.form.setErrors(error.originalError);
         }
-        else {
-          alert("Unexpected error uccured!");
-          console.log(error);        
-        }                
+        else throw error;            
       });
   }
 
@@ -46,10 +43,6 @@ export class PostsComponent implements OnInit {
     this.service.updatePost(post)
       .subscribe(response => {
         console.log(response.json());
-      }, 
-      error => {
-        alert("Unexpected error uccured!");
-        console.log(error);
       });
   }
 
@@ -62,10 +55,7 @@ export class PostsComponent implements OnInit {
       (error: AppError) => {
         if (error instanceof NotFoundError)
           alert("This post has already been deleted.");
-        else {
-          alert("Unexpected error uccured!");
-          console.log(error);        
-        }        
+        else throw error;    
       });
   }
 
