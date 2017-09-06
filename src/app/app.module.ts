@@ -1,3 +1,4 @@
+import { PostService } from './services/post.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +17,9 @@ import { PostsComponent } from './posts/posts.component';
     FormsModule,
     HttpModule    
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
