@@ -1,3 +1,4 @@
+import { BadInputError } from './../common/bad-input-error';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { PostService } from './../services/post.service';
@@ -30,14 +31,14 @@ export class PostsComponent implements OnInit {
         post['id'] = response.json().id;
         this.posts.splice(0, 0, post);        
       }, 
-      (error: Response) => {
-        if (error.status === 400){
-          //this.form.setErrors(error.json());
+      (error: AppError) => {
+        if (error instanceof BadInputError){
+          //this.form.setErrors(error.originalError);
         }
         else {
           alert("Unexpected error uccured!");
-          console.log(error);  
-        }        
+          console.log(error);        
+        }                
       });
   }
 

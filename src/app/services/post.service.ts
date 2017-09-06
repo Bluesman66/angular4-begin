@@ -1,3 +1,4 @@
+import { BadInputError } from './../common/bad-input-error';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { Http } from '@angular/http';
@@ -16,7 +17,12 @@ export class PostService {
   }
 
   createPost(post) {
-    return this.http.post(this.url, JSON.stringify(post));
+    return this.http.post(this.url, JSON.stringify(post))
+      .catch((error: Response) => {
+        if (error.status === 400)
+          return Observable.throw(new BadInputError(error.json()));
+        return Observable.throw(new AppError(error.json()));
+      })
   }
 
   updatePost(post) {
@@ -28,7 +34,7 @@ export class PostService {
       .catch((error: Response) => {
         if (error.status === 404)
           return Observable.throw(new NotFoundError());
-        return Observable.throw(new AppError(error));
+        return Observable.throw(new AppError(error.json()));
       });
   }
 }
