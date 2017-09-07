@@ -1,3 +1,4 @@
+import { GithubFollowersService } from './services/github-followers.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
 import { PostService } from './services/post.service';
@@ -55,6 +56,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   providers: [
     PostService,
+    GithubFollowersService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
